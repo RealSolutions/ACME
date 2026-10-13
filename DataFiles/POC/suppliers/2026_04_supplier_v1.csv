@@ -1,0 +1,13 @@
+﻿SupplierCode,SupplierName,CountryName,CurrencyCode,SpendCategory,PaymentTermsDays
+SUP001,Mickey Mouse Metals Ltd,United Kingdom,GBP,Raw Materials - Steel,60
+SUP002,Minnie Mouse Machining Ltd,United Kingdom,GBP,Machined Components,45
+SUP003,Goofy Gears & Bearings Ltd,United Kingdom,GBP,Bearings & Transmission,30
+SUP004,Pluto Packaging Supplies Ltd,United Kingdom,GBP,Packaging,30
+SUP005,Baloo Bulk Logistics Ltd,United Kingdom,GBP,Freight & Logistics,30
+SUP006,Donald Duck Drives GmbH,Germany,EUR,Electric Motors & Drives,60
+SUP007,Belle Hydraulics SARL,France,EUR,Hydraulics,60
+SUP008,Ariel Coatings BV,Netherlands,EUR,Paints & Coatings,45
+SUP009,Pinocchio Precision Timber S.r.l.,Italy,EUR,Timber & Pallets,30
+SUP010,Baymax Electronics K.K.,Japan,JPY,Electronic Components,90
+SUP011,Stitch Sensors K.K.,Japan,JPY,Sensors & Instrumentation,90
+SUP012,Simba Robotics K.K.,Japan,JPY,Automation & Robotics,90

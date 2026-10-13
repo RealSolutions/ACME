@@ -1,0 +1,13 @@
+﻿SupplierCode,Period,CurrencyCode,BudgetAmountLocal,BudgetNote
+SUP001,202612,GBP,68000.00,Christmas shutdown
+SUP002,202612,GBP,33600.00,Christmas shutdown
+SUP003,202612,GBP,22400.00,Christmas shutdown
+SUP004,202612,GBP,12000.00,Christmas shutdown
+SUP005,202612,GBP,17600.00,Christmas shutdown
+SUP006,202612,EUR,44000.00,Christmas shutdown
+SUP007,202612,EUR,30400.00,Christmas shutdown
+SUP008,202612,EUR,14400.00,Christmas shutdown
+SUP009,202612,EUR,9600.00,Christmas shutdown
+SUP010,202612,JPY,5200000.00,Christmas shutdown
+SUP011,202612,JPY,2560000.00,Christmas shutdown
+SUP012,202612,JPY,7200000.00,Christmas shutdown

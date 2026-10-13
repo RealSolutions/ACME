@@ -1,0 +1,4 @@
+﻿CurrencyCode,CurrencyName,DecimalPlaces,IsReporting
+GBP,Pound Sterling,2,True
+EUR,Euro,2,False
+JPY,Japanese Yen,0,False

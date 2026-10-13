@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build">
+  <Sdk Name="Microsoft.Build.Sql" Version="2.3.0-preview.2" />
+  <PropertyGroup>
+    <Name>ACME_SQLWH</Name>
+    <ProjectGuid>{f6404dce-c4a6-1deb-fbd4-3ece597c2e4a}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlDwUnifiedDatabaseSchemaProvider</DSP>
+    <ModelCollation>1033, CS</ModelCollation>
+    <DefaultCollation>Latin1_General_100_BIN2_UTF8</DefaultCollation>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SqlServer.Dacpacs.FabricDw">
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+      <Version>170.0.2</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Build Remove=".sharedqueries\**" />
+  </ItemGroup>
+  <Target Name="BeforeBuild">
+    <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
+  </Target>
+</Project>
