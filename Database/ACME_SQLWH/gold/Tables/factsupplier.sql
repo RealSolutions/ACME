@@ -1,4 +1,4 @@
-CREATE TABLE [gold].[factsupplier] (
+CREATE TABLE [gold].[dimsupplier] (
     [SupplierSK]          BIGINT         NOT NULL,
     [SupplierCode]        VARCHAR (8000) NOT NULL,
     [SupplierName]        VARCHAR (8000) NOT NULL,
@@ -14,6 +14,6 @@ CREATE TABLE [gold].[factsupplier] (
 );
 GO
 
-ALTER TABLE [gold].[factsupplier]
-    ADD CONSTRAINT [PK_gold_factsupplier] PRIMARY KEY NONCLUSTERED ([SupplierSK] ASC) NOT ENFORCED;
+ALTER TABLE [gold].[dimsupplier]
+    ADD CONSTRAINT [PK_gold_dimsupplier] PRIMARY KEY NONCLUSTERED ([SupplierSK] ASC) NOT ENFORCED;
 GO

@@ -21,19 +21,43 @@ BEGIN
 
         INSERT INTO bronze.budget
         (
-            suppliercode, period, currencycode, budgetamountlocal, budgetnote,
-            budget_year, budget_month, budget_period, version, source_file, loaded_at,
-            _ingested_at, _source_system, _batch_id
+            suppliercode, 
+            period, 
+            currencycode, 
+            budgetamountlocal, 
+            budgetnote,
+            budget_year, 
+            budget_month, 
+            budget_period, 
+            version, 
+            source_file, 
+            loaded_at,
+            _ingested_at, 
+            _source_system, 
+            _batch_id
         )
         SELECT
-            b.suppliercode, b.period, b.currencycode, b.budgetamountlocal, b.budgetnote,
-            b.budget_year, b.budget_month, b.budget_period, b.version, b.source_file, b.loaded_at,
-            @ingested_at, 'ACME_LH.dbo.budget', @batch_id
-        FROM ACME_LH.dbo.budget AS b;
+            b.suppliercode, 
+            b.period, 
+            b.currencycode,
+            b.budgetamountlocal, 
+            b.budgetnote,
+            b.budget_year, 
+            b.budget_month, 
+            b.budget_period, 
+            b.version, 
+            b.source_file, 
+            b.loaded_at,
+            @ingested_at, 
+            'ACME_LH.dbo.budget', 
+            @batch_id
+        FROM 
+            ACME_LH.dbo.budget AS b;
 
     COMMIT TRANSACTION;
-
-    SELECT @batch_id AS batch_id, @ingested_at AS ingested_at,
-           (SELECT COUNT(*) FROM bronze.budget) AS rows_loaded;
+        SELECT 
+            @batch_id AS batch_id, 
+            @ingested_at AS ingested_at,
+            (SELECT COUNT(*) FROM bronze.budget) AS rows_loaded;
 END;
 GO

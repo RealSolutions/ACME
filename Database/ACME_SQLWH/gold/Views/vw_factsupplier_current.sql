@@ -3,6 +3,6 @@ CREATE   VIEW gold.vw_factsupplier_current
 AS
     SELECT SupplierSK, SupplierCode, SupplierName, SupplierDisplayName,
         CountryName, CurrencyCode, SpendCategory, PaymentTermsDays
-    FROM   gold.factsupplier
+    FROM   gold.dimsupplier
     WHERE  IsCurrent = 1;
 GO

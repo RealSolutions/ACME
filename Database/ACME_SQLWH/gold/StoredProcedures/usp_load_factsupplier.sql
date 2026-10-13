@@ -1,3 +1,4 @@
+--TODO Header
 CREATE   PROCEDURE gold.usp_load_factsupplier
 AS
 BEGIN
@@ -8,9 +9,9 @@ BEGIN
     BEGIN TRANSACTION;
 
         -- TODO only load changes
-        delete from gold.factsupplier;
+        delete from gold.dimsupplier;
 
-        INSERT INTO gold.factsupplier
+        INSERT INTO gold.dimsupplier
         (
             SupplierSK, SupplierCode, SupplierName, SupplierDisplayName,
             CountryName, CurrencyCode, SpendCategory, PaymentTermsDays,
@@ -39,6 +40,6 @@ BEGIN
     SELECT @loaded_at AS loaded_at,
            COUNT(*)                                       AS rows_loaded,
            SUM(CASE WHEN IsCurrent = 1 THEN 1 ELSE 0 END) AS current_rows
-    FROM gold.factsupplier;
+    FROM gold.dimsupplier;
 END;
 GO

@@ -21,19 +21,30 @@ BEGIN
 
         INSERT INTO bronze.supplier
         (
-            SupplierCode, SupplierName, CountryName, CurrencyCode,
-            SpendCategory, PaymentTermsDays, 
-            _ingested_at, _source_system, _batch_id
+            SupplierCode, 
+            SupplierName, 
+            CountryName, 
+            CurrencyCode,
+            SpendCategory, 
+            PaymentTermsDays, 
+            _ingested_at, 
+            _source_system, 
+            _batch_id
         )
         SELECT
-            s.SupplierCode, s.SupplierName, s.CountryName, s.CurrencyCode,
-            s.SpendCategory, s.PaymentTermsDays, 
-            @ingested_at, 'ACME_LH.dbo.supplier', @batch_id
+            s.SupplierCode, 
+            s.SupplierName, 
+            s.CountryName, 
+            s.CurrencyCode,
+            s.SpendCategory, 
+            s.PaymentTermsDays, 
+            @ingested_at, 
+            'ACME_LH.dbo.supplier', 
+            @batch_id
         FROM ACME_LH.dbo.supplier AS s;
 
     COMMIT TRANSACTION;
-
-    SELECT @batch_id AS batch_id, @ingested_at AS ingested_at,
+        SELECT @batch_id AS batch_id, @ingested_at AS ingested_at,
            (SELECT COUNT(*) FROM bronze.supplier) AS rows_loaded;
 END;
 GO

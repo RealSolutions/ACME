@@ -21,17 +21,42 @@ BEGIN
 
         INSERT INTO bronze.actual
         (
-            Period, InvoiceNumber, InvoiceDate, PurchaseOrderNo, CurrencyCode,
-            AmountLocal, Description, version, source_file, loaded_at,
-            actual_year, actual_month, actual,
-            _ingested_at, _source_system, _batch_id
+            Period, 
+            InvoiceNumber, 
+            InvoiceDate, 
+            PurchaseOrderNo, 
+            CurrencyCode,
+            AmountLocal, 
+            Description, 
+            version, 
+            source_file, 
+            loaded_at,
+            actual_year, 
+            actual_month, 
+            actual,
+            _ingested_at, 
+            _source_system, 
+            _batch_id
         )
         SELECT
-            a.Period, a.InvoiceNumber, a.InvoiceDate, a.PurchaseOrderNo, a.CurrencyCode,
-            a.AmountLocal, a.Description, a.version, a.source_file, a.loaded_at,
-            a.actual_year, a.actual_month, a.actual,
-            @ingested_at, 'ACME_LH.dbo.actual', @batch_id
-        FROM ACME_LH.dbo.actual AS a;
+            a.Period, 
+            a.InvoiceNumber, 
+            a.InvoiceDate, 
+            a.PurchaseOrderNo, 
+            a.CurrencyCode,
+            a.AmountLocal, 
+            a.Description, 
+            a.version, 
+            a.source_file, 
+            a.loaded_at,
+            a.actual_year, 
+            a.actual_month, 
+            a.actual,
+            @ingested_at, 
+            'ACME_LH.dbo.actual', 
+            @batch_id
+        FROM 
+            ACME_LH.dbo.actual AS a;
 
     COMMIT TRANSACTION;
 

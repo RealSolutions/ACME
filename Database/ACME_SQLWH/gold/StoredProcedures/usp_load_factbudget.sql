@@ -66,7 +66,7 @@ BEGIN
                         s.ValidFrom DESC
                 ) AS rn
             FROM budget AS b
-            INNER JOIN gold.factsupplier AS s
+            INNER JOIN gold.dimsupplier AS s
                 ON  s.SupplierCode = b.suppliercode
                 AND s.SupplierSK  <> -1
         )

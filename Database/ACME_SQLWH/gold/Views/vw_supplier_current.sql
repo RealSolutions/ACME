@@ -5,5 +5,4 @@ AS
         CountryName, CurrencyCode, SpendCategory, PaymentTermsDays
     FROM   gold.supplier
     WHERE  IsCurrent = 1;
-
 GO

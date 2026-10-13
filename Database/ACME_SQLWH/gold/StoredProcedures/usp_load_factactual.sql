@@ -4,7 +4,7 @@
 
    gold.factactual is the actual-spend fact table for reporting.
    - One row per current invoice in silver (IsCurrent = 1), keyed on ActualSK.
-   - SupplierSK is looked up from gold.factsupplier by SupplierCode, picking the
+   - SupplierSK is looked up from gold.dimsupplier by SupplierCode, picking the
      supplier version that was valid on the invoice date
      (InvoiceDate, else the `actual` period date, else actual_year/actual_month):
        1. 'PointInTime' - the date falls inside [ValidFrom, ValidTo)
@@ -72,7 +72,7 @@ BEGIN
                         s.ValidFrom DESC
                 ) AS rn
             FROM dated AS d
-            INNER JOIN gold.factsupplier AS s
+            INNER JOIN gold.dimsupplier AS s
                 ON  s.SupplierCode = d.SupplierCode
                 AND s.SupplierSK  <> -1
         )

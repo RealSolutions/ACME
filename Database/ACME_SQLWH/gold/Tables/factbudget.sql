@@ -16,7 +16,7 @@ CREATE TABLE [gold].[factbudget] (
 GO
 
 ALTER TABLE [gold].[factbudget]
-    ADD CONSTRAINT [FK_gold_factbudget_supplier] FOREIGN KEY ([SupplierSK]) REFERENCES [gold].[factsupplier] ([SupplierSK]) NOT ENFORCED;
+    ADD CONSTRAINT [FK_gold_factbudget_supplier] FOREIGN KEY ([SupplierSK]) REFERENCES [gold].[dimsupplier] ([SupplierSK]) NOT ENFORCED;
 GO
 
 ALTER TABLE [gold].[factbudget]

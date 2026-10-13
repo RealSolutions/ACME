@@ -1,25 +1,3 @@
-/* =============================================================================
-   Silver load (SCD Type 2): ACME_SQLWH.bronze.actual -> ACME_SQLWH.silver.actual
-   Run in the ACME_SQLWH warehouse (workspace: ACME).
-
-   Source columns (bronze.actual): Period, InvoiceNumber, InvoiceDate,
-   PurchaseOrderNo, CurrencyCode, AmountLocal, Description, version, source_file,
-   loaded_at, actual_year, actual_month, actual + _ingested_at/_source_system/_batch_id
-
-   - Business key : InvoiceNumber (kept as-is, trimmed)
-   - SupplierCode : derived = everything in InvoiceNumber before the first '-'
-                    e.g. 'SUP001-000123' -> 'SUP001'. NULL if there is no '-'.
-   - Surrogate key: ActualSK (BIGINT, assigned here, unique per version)
-   - Tracked      : Period, InvoiceDate, PurchaseOrderNo, CurrencyCode, AmountLocal,
-                    Description, version, actual_year, actual_month, actual.
-                    A change to any of these closes the current row and inserts a new version.
-   - Not tracked  : source_file, loaded_at (lineage only).
-   - Duplicates   : if bronze has several rows for one invoice, the highest `version`
-                    wins, then the latest loaded_at.
-   - Deletes      : an invoice missing from bronze has its current row closed.
-   - Intervals    : half-open [ValidFrom, ValidTo); current rows have ValidTo = 9999-12-31.
-   - Re-runnable  : running twice with no bronze changes is a no-op.
-   ============================================================================= */
 CREATE   VIEW silver.vw_actual_source
 AS
     WITH cleaned AS
