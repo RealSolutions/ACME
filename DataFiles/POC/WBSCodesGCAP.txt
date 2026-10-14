@@ -1,0 +1,116 @@
+WBS,Description
+1,Edgewing
+1.1,GCAP Engineering Management, Governance & Assurance
+1.1.1,Engineering Governane & Assurance
+1.1.1.1,Engineering Governane & Assurance
+1.1.1.2,Engineering Policies
+1.1.1.3,Engineering Interfaces
+1.1.1.4,Engineering Processes
+1.1.1.5,Engineering Safety Management System
+1.1.1.6,Regulations & Standards
+1.1.1.7,Engineering Assurance
+1.1.2,Engineering Capability Management
+1.1.3,Engineering and Technical Management
+1.1.3.1,Engineering Planning, Assesment and Control
+1.1.3.2,Technology Management and Planning
+1.1.3.3, Technical Bid Management
+1.1.3.4,Supply Chain Coordination
+1.1.3.5,Engineering Export Control Management
+1.1.3.6,Engineering Risk Management
+1.1.3.7,Decision Managemet
+1.1.3.8,Technical Assumptions Management
+1.1.3.9,Configuration & Information (Data) Management
+1.1.3.10, Measurement & Management by Maturity
+1.1.3.11, Engineering Lifecycle Managment
+1.2,Airworthiness
+1.2.1,DOA Certification Management
+1.2.2,Certification/Initial Airworthiness Management
+1.2.3,Continueed Airworthiness
+1.2.4,Complicance Verification Engineering (CVE)
+1.3,GCAP Systems Engineering and Integration
+1.3.1,Requirements Management
+1.3.2,Product Configuration Managemtn
+1.3.3,Systems Architecture
+1.3.4,Modelling and Simulation
+1.3.5,Product Safety
+1.3.6,Reliability, Maintability and Testability (RMT)
+1.3.7,Human Factors Integration (HFI)
+1.3.8,Survivability
+1.3.9,Product Environment
+1.3.10,Environmental Standards
+1.3.11,Software Systems Engineering 
+1.3.12,Product Security
+1.3.13,Operational Effectiveness
+1.3.14,Product Strategy
+1.3.15,Qualification Management
+1.3.16,Obsolesence Managemtn
+1.4,GCAP System Test & Evaluation (T&E)
+1.4.1,T&E Planning
+1.4.2,T&E Co-ordination
+1.4.3,T&E Delivery
+1.5,Core Platform
+1.5.1,CP Integration
+1.5.2,Physical Air Vehicle Integration
+1.5.3,Cockpit Integration
+1.5.4,Weapon Integration
+1.5.5,airframe
+1.5.6,Propulsion System Supplier Management
+1.5.7, Flight System (FS)
+1.5.8,SANKE System Supplier Management
+1.5.9,Comms System Supplier Management
+1.5.10,Mission System (MS)
+1.5.11,Computing System
+1.6,Support System
+1.6.1,Support System Concepting and Integration
+1.7,Training and Training Equiptment
+1.7.1,Training and Training Equiptment Concepting and Integration
+1.8,Integrated Product Support (IPS)
+1.8.1,Integrated Product Support (IPS) Concepting and Integration
+1.9,Mission Enablement
+1.9.1,Mission Enablement Concepting and Integration
+1.10, Production
+1.10.1,Manufacturing Equiptment and Planning
+1.11, Integrated Management
+1.11.1,Core Product Management
+1.11.2,Procurement and Supply Chain Management
+1.11.3,Quality Management
+1.11.4,Commercial, Business and Sales Management, Business Development
+1.11.5,Audit Management
+1.11.6,Legal and Compliance Management
+1.11.7,Financial Management
+1.11.8,Human Resource Management
+1.11.9,Communications Management
+1.11.10,Sustainability Management
+1.12,Business Operations - Facilities, General Service Management
+1.12.1,Enterprise Safety Management
+1.12.2,Enterprise Risk Management
+1.12.3,General Services
+1.13, Enterprise Enablers
+1.13.1,Digital Enablement
+1.13.2,Secure Digital Platform
+1.13.2.1,ACWE-R
+1.13.2.2,ACWE-S
+1.13.2.3,Service Management
+1.13.3,Digital Business
+1.13.3.1,DB Service Management
+1.13.4,Data and Insights
+1.13.5,Digital Engineering
+1.13.6,Secure Physical Infrasture
+1.13.7,Security
+1.14,Domains
+1.14.1,Propulsion System Development (LSSI)
+1.14.2,Sanke & Comms Systems Development (LSSI)
+1.90,Functional Cost Centre
+1.90.1,Finance CC
+1.90.2,Programme Management - CC
+1.90.3, Engineering Technology & Innovation - CC
+1.90.4,Procurement and Supply Chain Management - CC
+1.90.5,Commercial & Businesss Strategy CC
+1.90.6,Digital & Information CC
+1.90.7,Legal & Compliance
+1.90.8,People CC
+1.90.9,Security CC
+1.90.10,Quality CC
+1.90.11,Communications CC
+1.90.12,Enterprise Risk Management CC
+1.90.13,Audit Management CC

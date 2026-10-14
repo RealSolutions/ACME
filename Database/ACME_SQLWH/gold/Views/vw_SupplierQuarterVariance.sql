@@ -1,4 +1,4 @@
-
+/*
 CREATE VIEW gold.vw_SupplierQuarterVariance
 AS
 SELECT SupplierSK, SupplierCode, SupplierName, CurrencyCode,
@@ -17,3 +17,4 @@ FROM gold.vw_SupplierMonthVariance
 GROUP BY SupplierSK, SupplierCode, SupplierName, CurrencyCode,
          FiscalYearLabel, FiscalQuarter, FiscalQuarterLabel;
 GO
+*/

@@ -16,8 +16,7 @@
               -> silver.usp_load_budget -> gold.usp_load_budget
               
    ============================================================================= */
--- exec gold.usp_load_factbudget;
-CREATE OR ALTER  PROCEDURE gold.usp_load_factbudget
+CREATE PROCEDURE gold.usp_load_factbudget
 AS
 BEGIN
     SET NOCOUNT ON;

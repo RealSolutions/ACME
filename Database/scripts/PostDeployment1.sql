@@ -1,23 +1,6 @@
--- Write your own SQL object definition here, and it'll be included in your package.
-
+-- This file contains SQL statements that will be executed after the build script.
 -- ---------------------------------------------------------------------------------
--- 1. Schemas 
--- ---------------------------------------------------------------------------------
-IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'silver')
-    EXEC ('CREATE SCHEMA silver');
-GO
-IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'gold')
-    EXEC ('CREATE SCHEMA gold');
-GO
-
-
-IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'bronze')
-    EXEC ('CREATE SCHEMA bronze');
-GO
-
-
-    -- ---------------------------------------------------------------------------------
--- 3. Load basic data values
+-- Load basic Lookup data values
 -- ---------------------------------------------------------------------------------
 TRUNCATE TABLE gold.dimcurrency
 GO

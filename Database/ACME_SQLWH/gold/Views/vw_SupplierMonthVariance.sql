@@ -1,6 +1,7 @@
 /*
     SELECT * FROM gold.vw_SupplierMonthVariance
 */
+/*
 CREATE OR ALTER VIEW gold.vw_SupplierMonthVariance
 AS
 WITH bud AS
@@ -106,3 +107,4 @@ SELECT
     FROM conv c
     JOIN gold.dimperiod p ON p.PeriodKey = c.PeriodKey;
 GO
+*/
