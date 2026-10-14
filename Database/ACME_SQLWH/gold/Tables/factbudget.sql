@@ -1,8 +1,11 @@
+/*
+    DROP TABLE  [gold].[factbudget]
+*/
 CREATE TABLE [gold].[factbudget] (
     [BudgetSK]          BIGINT          NOT NULL,
     [SupplierSK]        BIGINT          NOT NULL,
     [SupplierCode]      VARCHAR (8000)  NOT NULL,
-    [Period]            INT             NOT NULL,
+    [PeriodKey]      INT             NOT NULL,
     [PeriodDate]        DATE            NULL,
     [BudgetYear]        INT             NULL,
     [BudgetMonth]       INT             NULL,

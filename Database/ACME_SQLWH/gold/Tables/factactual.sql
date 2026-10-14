@@ -5,7 +5,7 @@ CREATE TABLE [gold].[factactual] (
     [InvoiceNumber]     VARCHAR (8000)  NOT NULL,
     [InvoiceDate]       DATE            NULL,
     [PurchaseOrderNo]   VARCHAR (8000)  NULL,
-    [Period]            INT             NULL,
+    [PeriodKey]         INT             NULL,
     [PeriodDate]        DATE            NULL,
     [ActualYear]        INT             NULL,
     [ActualMonth]       INT             NULL,

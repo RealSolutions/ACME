@@ -16,7 +16,7 @@
    Run order: silver.usp_load_supplier -> gold.usp_load_supplier
               -> silver.usp_load_actual -> gold.usp_load_factactual
    ============================================================================= */
-CREATE   PROCEDURE gold.usp_load_factactual
+CREATE OR ALTER  PROCEDURE gold.usp_load_factactual
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -31,7 +31,18 @@ BEGIN
         (
             -- current invoices with a period date and a lookup date
             SELECT
-                a.*,
+                a.ActualSK, 
+                a.InvoiceNumber, 
+                a.SupplierCode, 
+                a.Period, 
+                a.InvoiceDate, 
+                a.PurchaseOrderNo, 
+                a.CurrencyCode, 
+                a.AmountLocal, 
+                a.Description, 
+                a.actual_year,
+                a.actual_month,
+                a.version,
                 COALESCE(a.actual,
                          CASE WHEN a.actual_year BETWEEN 1900 AND 9999
                                AND a.actual_month BETWEEN 1 AND 12
@@ -78,9 +89,22 @@ BEGIN
         )
         INSERT INTO gold.factactual
         (
-            ActualSK, SupplierSK, SupplierCode, InvoiceNumber, InvoiceDate, PurchaseOrderNo,
-            Period, PeriodDate, ActualYear, ActualMonth, CurrencyCode, AmountLocal,
-            Description, ActualVersion, SupplierMatchType, _loaded_at
+            ActualSK, 
+            SupplierSK, 
+            SupplierCode, 
+            InvoiceNumber, 
+            InvoiceDate, 
+            PurchaseOrderNo,
+            PeriodKey, 
+            PeriodDate, 
+            ActualYear, 
+            ActualMonth, 
+            CurrencyCode, 
+            AmountLocal,
+            Description, 
+            ActualVersion, 
+            SupplierMatchType, 
+            _loaded_at
         )
         SELECT
             d.ActualSK,

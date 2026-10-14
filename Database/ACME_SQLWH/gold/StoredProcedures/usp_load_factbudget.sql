@@ -14,8 +14,10 @@
    - Rebuilt in full each run (truncate + insert). Safe to re-run.
    Run order: silver.usp_load_supplier -> gold.usp_load_supplier
               -> silver.usp_load_budget -> gold.usp_load_budget
+              
    ============================================================================= */
-CREATE   PROCEDURE gold.usp_load_factbudget
+-- exec gold.usp_load_factbudget;
+CREATE OR ALTER  PROCEDURE gold.usp_load_factbudget
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -30,14 +32,24 @@ BEGIN
         (
             -- current budget lines with a usable period date
             SELECT
-                b.*,
+                b.BudgetSK,
+                b.suppliercode,
+                b.period,
+                b.currencycode,
+                b.budgetamountlocal, 
+                b.budgetnote, 
+                b.budget_year, 
+                b.budget_month, 
+                b.budget_period,
                 COALESCE(b.budget_period,
                          CASE WHEN b.budget_year BETWEEN 1900 AND 9999
                                AND b.budget_month BETWEEN 1 AND 12
                               THEN DATEFROMPARTS(b.budget_year, b.budget_month, 1) END
                 ) AS period_date
-            FROM silver.budget AS b
-            WHERE b.IsCurrent = 1
+            FROM 
+                silver.budget AS b
+            WHERE 
+                b.IsCurrent = 1
         ),
         candidates AS
         (
@@ -72,15 +84,25 @@ BEGIN
         )
         INSERT INTO gold.factbudget
         (
-            BudgetSK, SupplierSK, SupplierCode, Period, PeriodDate, BudgetYear, BudgetMonth,
-            CurrencyCode, BudgetAmountLocal, BudgetNote, BudgetVersion,
-            SupplierMatchType, _loaded_at
+            BudgetSK, 
+            SupplierSK,
+            SupplierCode, 
+            PeriodKey, 
+            PeriodDate, 
+            BudgetYear, 
+            BudgetMonth,
+            CurrencyCode, 
+            BudgetAmountLocal, 
+            BudgetNote, 
+            BudgetVersion,
+            SupplierMatchType, 
+            _loaded_at
         )
         SELECT
             b.BudgetSK,
             ISNULL(c.SupplierSK, -1),
             b.suppliercode,
-            b.period,
+            b.Period,
             b.period_date,
             b.budget_year,
             b.budget_month,
