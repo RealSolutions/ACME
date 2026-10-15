@@ -4,6 +4,8 @@ CREATE TABLE [bronze].[budget] (
     [currencycode]      VARCHAR (8000) NULL,
     [budgetamountlocal] FLOAT (53)     NULL,
     [budgetnote]        VARCHAR (8000) NULL,
+    [wbscode]           varchar(50) null,
+    [costype]           varchar(50) null,
     [budget_year]       INT            NULL,
     [budget_month]      INT            NULL,
     [budget_period]     DATE           NULL,

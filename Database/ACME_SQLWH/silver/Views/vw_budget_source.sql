@@ -29,6 +29,8 @@ AS
             UPPER(LTRIM(RTRIM(b.currencycode))) AS currencycode,
             b.budgetamountlocal,
             b.budgetnote,
+            b.wbscode,
+            b.costype,
             b.budget_year,
             b.budget_month,
             b.budget_period,
@@ -42,8 +44,19 @@ AS
         AND b.period IS NOT NULL
     )
     SELECT
-        suppliercode, period, currencycode, budgetamountlocal, budgetnote,
-        budget_year, budget_month, budget_period, version, source_file, loaded_at,
+        suppliercode, 
+        period, 
+        currencycode,
+        budgetamountlocal, 
+        budgetnote,
+        wbscode, 
+        costype,
+        budget_year,
+        budget_month, 
+        budget_period, 
+        version, 
+        source_file, 
+        loaded_at,
         -- '~' marks NULL so that NULL and '' hash differently.
         -- Float uses style 3 (17 significant digits) so small amount changes are caught.
         -- HASHBYTES returns VARBINARY(8000); convert explicitly to the 32-byte column type.
