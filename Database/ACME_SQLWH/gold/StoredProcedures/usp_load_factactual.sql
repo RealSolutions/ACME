@@ -16,7 +16,7 @@
    Run order: silver.usp_load_supplier -> gold.usp_load_supplier
               -> silver.usp_load_actual -> gold.usp_load_factactual
    ============================================================================= */
-CREATE OR ALTER PROCEDURE gold.usp_load_factactual
+CREATE PROCEDURE gold.usp_load_factactual
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -41,7 +41,7 @@ BEGIN
                 a.AmountLocal, 
                 a.Description, 
                 a.wbscode,
-                a.costype,
+                a.costtype,
                 a.actual_year,
                 a.actual_month,
                 a.version,

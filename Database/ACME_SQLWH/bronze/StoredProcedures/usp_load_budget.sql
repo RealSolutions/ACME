@@ -7,7 +7,7 @@
    Bronze = a raw copy of the source columns plus load-audit columns.
    Each run does a full reload (truncate + insert) so it is safe to re-run.
    ============================================================================= */
-CREATE or alter   PROCEDURE bronze.usp_load_budget
+CREATE PROCEDURE bronze.usp_load_budget
 AS
 BEGIN
     SET NOCOUNT ON;

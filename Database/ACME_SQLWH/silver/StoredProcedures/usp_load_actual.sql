@@ -20,7 +20,7 @@
    - Intervals    : half-open [ValidFrom, ValidTo); current rows have ValidTo = 9999-12-31.
    - Re-runnable  : running twice with no bronze changes is a no-op.
    ============================================================================= */
-CREATE or alter    PROCEDURE silver.usp_load_actual
+CREATE PROCEDURE silver.usp_load_actual
 AS
 BEGIN
     SET NOCOUNT ON;

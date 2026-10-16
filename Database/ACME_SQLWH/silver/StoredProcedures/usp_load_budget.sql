@@ -1,5 +1,5 @@
 --TODO Header
-CREATE or alter  PROCEDURE silver.usp_load_budget
+CREATE  PROCEDURE silver.usp_load_budget
 AS
 BEGIN
     SET NOCOUNT ON;

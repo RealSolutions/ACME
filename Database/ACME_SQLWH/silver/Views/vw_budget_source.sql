@@ -19,7 +19,7 @@
    - Intervals    : half-open [ValidFrom, ValidTo); current rows have ValidTo = 9999-12-31.
    - Re-runnable  : running twice with no bronze changes is a no-op.
    ============================================================================= */
-CREATE  or alter VIEW silver.vw_budget_source
+CREATE VIEW silver.vw_budget_source
 AS
     WITH ranked AS
     (

@@ -1,8 +1,9 @@
 /*
+    select * from  gold.factactual
+    select * from gold.factexchangerate
     SELECT * FROM gold.vw_SupplierMonthVariance
 */
-/*
-CREATE OR ALTER VIEW gold.vw_SupplierMonthVariance
+CREATE  VIEW gold.vw_SupplierMonthVariance
 AS
 WITH bud AS
 (
@@ -106,5 +107,3 @@ SELECT
             ELSE 'On budget (+/-5%)' END                                     AS VarianceStatus
     FROM conv c
     JOIN gold.dimperiod p ON p.PeriodKey = c.PeriodKey;
-GO
-*/
