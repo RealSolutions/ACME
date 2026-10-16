@@ -16,7 +16,7 @@
    Run order: silver.usp_load_supplier -> gold.usp_load_supplier
               -> silver.usp_load_actual -> gold.usp_load_factactual
    ============================================================================= */
-CREATE PROCEDURE gold.usp_load_factactual
+CREATE OR ALTER PROCEDURE gold.usp_load_factactual
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -40,6 +40,8 @@ BEGIN
                 a.CurrencyCode, 
                 a.AmountLocal, 
                 a.Description, 
+                a.wbscode,
+                a.costype,
                 a.actual_year,
                 a.actual_month,
                 a.version,
@@ -101,7 +103,9 @@ BEGIN
             ActualMonth, 
             CurrencyCode, 
             AmountLocal,
-            Description, 
+            Description,
+            wbscode,
+            costtype, 
             ActualVersion, 
             SupplierMatchType, 
             _loaded_at
@@ -120,6 +124,8 @@ BEGIN
             ISNULL(NULLIF(d.CurrencyCode, ''), 'UNK'),
             CAST(d.AmountLocal AS DECIMAL(19,4)),
             d.Description,
+            d.wbscode,
+            d.costtype,
             d.version,
             ISNULL(c.match_type, 'Unknown'),
             @loaded_at

@@ -7,7 +7,7 @@
    Bronze = a raw copy of the source columns plus load-audit columns.
    Each run does a full reload (truncate + insert) so it is safe to re-run.
    ============================================================================= */
-CREATE   PROCEDURE bronze.usp_load_budget
+CREATE or alter   PROCEDURE bronze.usp_load_budget
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -25,12 +25,12 @@ BEGIN
             period, 
             currencycode, 
             budgetamountlocal, 
-            budgetnote,
-            wbscode,
-            costype,            
+            budgetnote,         
             budget_year, 
             budget_month, 
-            budget_period, 
+            budget_period,
+            wbscode,
+            costtype,                
             version, 
             source_file, 
             loaded_at,
@@ -43,12 +43,12 @@ BEGIN
             b.period, 
             b.currencycode,
             b.budgetamountlocal, 
-            b.budgetnote,
-            b.wbscode,
-            b.costype,             
+            b.budgetnote,          
             b.budget_year, 
             b.budget_month, 
             b.budget_period, 
+            b.wbscode,
+            b.costtype,               
             b.version, 
             b.source_file, 
             b.loaded_at,

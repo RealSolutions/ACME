@@ -1,5 +1,5 @@
 --TODO Header
-CREATE   PROCEDURE silver.usp_load_budget
+CREATE or alter  PROCEDURE silver.usp_load_budget
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -45,14 +45,14 @@ BEGIN
         INSERT INTO silver.budget
             (BudgetSK, suppliercode, period, currencycode, budgetamountlocal, budgetnote,
           wbscode,
-            costype,    
+            costtype,    
              budget_year, budget_month, budget_period, version, source_file, loaded_at,
              RowHash, ValidFrom, ValidTo, IsCurrent, _batch_id, _created_at, _updated_at)
         SELECT
             @max_sk + ROW_NUMBER() OVER (ORDER BY s.suppliercode, s.period),
             s.suppliercode, s.period, s.currencycode, s.budgetamountlocal, s.budgetnote,
                         s.wbscode,
-            s.costype,    
+            s.costtype,    
             s.budget_year, s.budget_month, s.budget_period, s.version, s.source_file, s.loaded_at,
             s.RowHash, @load_ts, @high_date, 1, @batch_id, @load_ts, @load_ts
         FROM silver.vw_budget_source AS s

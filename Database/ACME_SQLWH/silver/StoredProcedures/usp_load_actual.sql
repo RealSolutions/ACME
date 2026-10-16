@@ -20,7 +20,7 @@
    - Intervals    : half-open [ValidFrom, ValidTo); current rows have ValidTo = 9999-12-31.
    - Re-runnable  : running twice with no bronze changes is a no-op.
    ============================================================================= */
-CREATE   PROCEDURE silver.usp_load_actual
+CREATE or alter    PROCEDURE silver.usp_load_actual
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -64,13 +64,13 @@ BEGIN
         INSERT INTO silver.actual
             (ActualSK, InvoiceNumber, SupplierCode, Period, InvoiceDate, PurchaseOrderNo,
              CurrencyCode, AmountLocal, Description, version, actual_year, actual_month,
-             actual, source_file, loaded_at,
+             actual, source_file, loaded_at,wbscode, costtype,
              RowHash, ValidFrom, ValidTo, IsCurrent, _batch_id, _created_at, _updated_at)
         SELECT
             @max_sk + ROW_NUMBER() OVER (ORDER BY s.InvoiceNumber),
             s.InvoiceNumber, s.SupplierCode, s.Period, s.InvoiceDate, s.PurchaseOrderNo,
             s.CurrencyCode, s.AmountLocal, s.Description, s.version, s.actual_year, s.actual_month,
-            s.actual, s.source_file, s.loaded_at,
+            s.actual, s.source_file, s.loaded_at,s.wbscode, s.costtype,
             s.RowHash, @load_ts, @high_date, 1, @batch_id, @load_ts, @load_ts
         FROM silver.vw_actual_source AS s
         WHERE NOT EXISTS (SELECT 1

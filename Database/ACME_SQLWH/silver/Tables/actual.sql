@@ -1,3 +1,6 @@
+/*
+    DROP TABLE [silver].[actual]
+*/
 CREATE TABLE [silver].[actual] (
     [ActualSK]        BIGINT         NOT NULL,
     [InvoiceNumber]   VARCHAR (8000) NOT NULL,
@@ -8,6 +11,8 @@ CREATE TABLE [silver].[actual] (
     [CurrencyCode]    VARCHAR (8000) NULL,
     [AmountLocal]     FLOAT (53)     NULL,
     [Description]     VARCHAR (8000) NULL,
+    [wbscode]           varchar(50) null,
+    [costtype]           varchar(50) null,    
     [version]         INT            NULL,
     [actual_year]     INT            NULL,
     [actual_month]    INT            NULL,

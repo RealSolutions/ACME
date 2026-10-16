@@ -14,6 +14,8 @@ AS
             a.actual_year,
             a.actual_month,
             a.actual,
+            a.wbscode,
+            a.costtype,
             a.source_file,
             a.loaded_at,
             a._ingested_at
@@ -35,7 +37,11 @@ AS
     SELECT
         InvoiceNumber, SupplierCode, Period, InvoiceDate, PurchaseOrderNo, CurrencyCode,
         AmountLocal, Description, version, actual_year, actual_month, actual,
-        source_file, loaded_at,
+           wbscode,
+            costtype,
+        source_file,
+         loaded_at,
+        
         -- '~' marks NULL so that NULL and '' hash differently.
         -- Float uses style 3 (17 significant digits) so small amount changes are caught.
         -- HASHBYTES returns VARBINARY(8000); convert explicitly to the 32-byte column type.

@@ -13,7 +13,7 @@ CREATE TABLE [gold].[factbudget] (
     [BudgetAmountLocal] DECIMAL (19, 4) NULL,
     [BudgetNote]        VARCHAR (8000)  NULL,
     [wbscode]           varchar(50) null,
-    [costype]           varchar(50) null,
+    [costtype]           varchar(50) null,
     [BudgetVersion]     INT             NULL,
     [SupplierMatchType] VARCHAR (20)    NOT NULL,
     [_loaded_at]        DATETIME2 (6)   NOT NULL

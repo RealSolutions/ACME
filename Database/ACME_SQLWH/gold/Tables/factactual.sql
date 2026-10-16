@@ -1,3 +1,6 @@
+/*
+    DROP TABLE  [gold].[factactual]
+*/
 CREATE TABLE [gold].[factactual] (
     [ActualSK]          BIGINT          NOT NULL,
     [SupplierSK]        BIGINT          NOT NULL,
@@ -12,6 +15,8 @@ CREATE TABLE [gold].[factactual] (
     [CurrencyCode]      VARCHAR (8000)  NOT NULL,
     [AmountLocal]       DECIMAL (19, 4) NULL,
     [Description]       VARCHAR (8000)  NULL,
+        [wbscode]           varchar(50) null,
+    [costtype]           varchar(50) null,  
     [ActualVersion]     INT             NULL,
     [SupplierMatchType] VARCHAR (20)    NOT NULL,
     [_loaded_at]        DATETIME2 (6)   NOT NULL

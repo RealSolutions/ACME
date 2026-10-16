@@ -19,7 +19,7 @@
    - Intervals    : half-open [ValidFrom, ValidTo); current rows have ValidTo = 9999-12-31.
    - Re-runnable  : running twice with no bronze changes is a no-op.
    ============================================================================= */
-CREATE   VIEW silver.vw_budget_source
+CREATE  or alter VIEW silver.vw_budget_source
 AS
     WITH ranked AS
     (
@@ -30,7 +30,7 @@ AS
             b.budgetamountlocal,
             b.budgetnote,
             b.wbscode,
-            b.costype,
+            b.costtype,
             b.budget_year,
             b.budget_month,
             b.budget_period,
@@ -50,7 +50,7 @@ AS
         budgetamountlocal, 
         budgetnote,
         wbscode, 
-        costype,
+        costtype,
         budget_year,
         budget_month, 
         budget_period, 

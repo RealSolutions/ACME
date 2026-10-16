@@ -1,3 +1,6 @@
+/*
+    DROP TABLE [bronze].[budget]
+*/
 CREATE TABLE [bronze].[budget] (
     [suppliercode]      VARCHAR (8000) NULL,
     [period]            INT            NULL,
@@ -5,7 +8,7 @@ CREATE TABLE [bronze].[budget] (
     [budgetamountlocal] FLOAT (53)     NULL,
     [budgetnote]        VARCHAR (8000) NULL,
     [wbscode]           varchar(50) null,
-    [costype]           varchar(50) null,
+    [costtype]           varchar(50) null,
     [budget_year]       INT            NULL,
     [budget_month]      INT            NULL,
     [budget_period]     DATE           NULL,

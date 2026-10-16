@@ -31,11 +31,13 @@ INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.1.3.9','1.1.3',4,21,'Configuration & Information (Data) Management');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.1.3.10','1.1.3',4,22,'Measurement & Management by Maturity');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.1.3.11','1.1.3',4,23,'Engineering Lifecycle Management');
+
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.2',1.0,2,24,'Airworthiness');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.2.1',1.2,3,25,'DOA Certification Management');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.2.2',1.2,3,26,'Certification/Initial Airworthiness Management');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.2.3',1.2,3,27,'Continued Airworthiness');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.2.4',1.2,3,28,'Compliance Verification Engineering (CVE)');
+
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.3',1.0,2,29,'Systems Engineering and Integration');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.3.1',1.3,3,30,'Requirements Management');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.3.2',1.3,3,31,'Product Configuration Management');
@@ -53,10 +55,12 @@ INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.3.14',1.3,3,43,'Product Strategy');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.3.15',1.3,3,44,'Qualification Management');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.3.16',1.3,3,45,'Obsolescence Management');
+
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.4','1.0',2,46,'GCAP System Test & Evaluation (T&E)');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.4.1','1.4',3,47,'T&E Planning');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.4.2','1.4',3,48,'T&E Co-ordination');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.4.3','1.4',3,49,'T&E Delivery');
+
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.5','1.0',2,50,'Core Platform');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.5.1','1.5',3,51,'CP Integration');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.5.2','1.5',3,52,'Physical Air Vehicle Integration');
@@ -69,16 +73,22 @@ INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.5.9','1.5',3,59,'Comms System Supplier Management');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.5.10','1.5',3,60,'Mission System (MS)');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.5.11','1.5',3,61,'Computing System');
+
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.6','1.0',2,62,'Support System');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.6.1','1.6',3,63,'Support System Concepting and Integration');
+
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.7','1.0',2,64,'Training and Training Equipment');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.7.1','1.7',3,65,'Training and Training Equipment Concepting and Integration');
+
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.8','1.0',2,66,'Integrated Product Support (IPS)');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.8.1','1.8',3,67,'Integrated Product Support (IPS) Concepting and Integration');
+
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.9','1.0',2,68,'Mission Enablement');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.9.1','1.9',3,69,'Mission Enablement Concepting and Integration');
+
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.10','1.0',2,70,'Production');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.10.1','1.1',3,71,'Manufacturing Equipment and Planning');
+
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.11','1.0',2,72,'Integrated Management');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.11.1','1.11',3,73,'Core Product Management');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.11.2','1.11',3,74,'Procurement and Supply Chain Management');
@@ -90,10 +100,12 @@ INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.11.8','1.11',3,80,'Human Resource Management');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.11.9','1.11',3,81,'Communications Management');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.11.10','1.11',3,82,'Sustainability Management');
+
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.12','1.0',2,83,'Business Operations - Facilities, General Service Management');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.12.1','1.12',3,84,'Enterprise Safety Management');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.12.2','1.12',3,85,'Enterprise Risk Management');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.12.3','1.12',3,86,'General Services');
+
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.13','1.0',2,87,'Enterprise Enablers');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.13.1','1.13',3,88,'Digital Enablement');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.13.2','1.13',3,89,'Secure Digital Platform');
@@ -106,9 +118,11 @@ INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.13.5','1.13',3,96,'Digital Engineering');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.13.6','1.13',3,97,'Secure Physical Infrastructure');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.13.7','1.13',3,98,'Security');
+
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.14','1.0',2,99,'Domains');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.14.1','1.14',3,100,'Propulsion System Development (LSSI)');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.14.2','1.14',3,101,'SANKE & Comms Systems Development (LSSI)');
+
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.90','1.0',2,102,'Functional Cost Centre');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.90.1','1.9',3,103,'Finance CC');
 INSERT INTO [gold].[dimwbscode] ([WBSCode],[ParentWBSCode],[WBSLevel],[SortOrder],[Description]) VALUES ('1.90.2','1.9',3,104,'Programme Management CC');

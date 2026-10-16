@@ -1,13 +1,30 @@
-﻿SupplierCode,Period,CurrencyCode,BudgetAmountLocal,BudgetNote
-SUP001,202604,GBP,85000.00,
-SUP002,202604,GBP,42000.00,
-SUP003,202604,GBP,28000.00,
-SUP004,202604,GBP,15000.00,
-SUP005,202604,GBP,22000.00,
-SUP006,202604,EUR,55000.00,
-SUP007,202604,EUR,38000.00,
-SUP008,202604,EUR,18000.00,
-SUP009,202604,EUR,12000.00,
-SUP010,202604,JPY,6500000.00,
-SUP011,202604,JPY,3200000.00,
-SUP012,202604,JPY,9000000.00
+﻿SupplierCode,Period,CurrencyCode,BudgetAmountLocal,WBSCode,CostType,BudgetNote 
+SUP001,202604,GBP,5000.00,1.3.1,Labour,Requirements Management
+SUP001,202604,GBP,70000.00,1.3.9,Non Labour,Product Environment
+SUP001,202604,GBP,10000.00,1.3.11,Labour,Software Systems Engineering
+SUP002,202604,GBP,21000.00,1.3.1,Labour,Requirements Management
+SUP002,202604,GBP,21000.00,1.3.11,Labour,Software Systems Engineering
+SUP003,202604,GBP,14000.00,1.3.1,Labour,Requirements Management
+SUP003,202604,GBP,14000.00,1.3.9,Non Labour,Product Environment
+SUP004,202604,GBP,5000.00,1.3.1,Labour,Requirements Management
+SUP004,202604,GBP,5000.00,1.3.9,Non Labour,Product Environment
+SUP004,202604,GBP,2500.00,1.3.11,Labour,Software Systems Engineering
+SUP004,202604,GBP,2500.00,1.3.13,Labour,Operational Effectiveness
+SUP005,202604,GBP,11000.00,1.3.1,Labour,Requirements Management
+SUP005,202604,GBP,11000.00,1.3.13,Labour,Operational Effectiveness
+SUP006,202604,EUR,50000.00,1.3.12,Labour,Product Security
+SUP006,202604,EUR,5000.00,1.3.13,Labour,Operational Effectiveness
+SUP007,202604,EUR,32000.00,1.3.1,Labour,Requirements Management
+SUP007,202604,EUR,2000.00,1.3.9,Non Labour,Product Environment
+SUP007,202604,EUR,2000.00,1.3.11,Labour,Software Systems Engineering
+SUP007,202604,EUR,2000.00,1.3.13,Labour,Operational Effectiveness
+SUP008,202604,EUR,100000.00,1.3.1,Labour,Requirements Management
+SUP008,202604,EUR,8000.00,1.3.14,Labour,Product Strategy
+SUP009,202604,EUR,12000.00,1.3.14,Labour,Product Strategy
+SUP010,202604,JPY,6495000.00,1.3.1,Labour,Requirements Management
+SUP010,202604,JPY,2500.00,1.3.9,Non Labour,Product Environment
+SUP010,202604,JPY,2500.00,1.3.13,Labour,Operational Effectiveness
+SUP011,202604,JPY,3000000.00,1.3.1,Labour,Requirements Management
+SUP011,202604,JPY,200000.00,1.3.9,Non Labour,Product Environment
+SUP012,202604,JPY,4500000.00,1.3.1,Labour,Requirements Management
+SUP012,202604,JPY,4500000.00,1.3.9,Non Labour,Product Environment

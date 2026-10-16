@@ -1,3 +1,7 @@
+
+/*
+    DROP TABLE [bronze].[actual]
+*/
 CREATE TABLE [bronze].[actual] (
     [Period]          INT            NULL,
     [InvoiceNumber]   VARCHAR (8000) NULL,
@@ -6,6 +10,8 @@ CREATE TABLE [bronze].[actual] (
     [CurrencyCode]    VARCHAR (8000) NULL,
     [AmountLocal]     FLOAT (53)     NULL,
     [Description]     VARCHAR (8000) NULL,
+    [wbscode]           varchar(50) null,
+    [costtype]           varchar(50) null,    
     [version]         INT            NULL,
     [source_file]     VARCHAR (8000) NULL,
     [loaded_at]       DATETIME2 (6)  NULL,

@@ -94,6 +94,8 @@ BEGIN
             BudgetAmountLocal, 
             BudgetNote, 
             BudgetVersion,
+            wbscode,
+            costtype,    
             SupplierMatchType, 
             _loaded_at
         )
@@ -109,6 +111,8 @@ BEGIN
             CAST(b.budgetamountlocal AS DECIMAL(19,4)),
             b.budgetnote,
             b.version,
+            b.wbscode,
+            b.costtype,  
             ISNULL(c.match_type, 'Unknown'),
             @loaded_at
         FROM budget AS b
