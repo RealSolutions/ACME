@@ -16,7 +16,11 @@
 SELECT t.TableName, t.ActualRows, e.ExpectedRows,
        CASE WHEN t.ActualRows = e.ExpectedRows THEN 'PASS' ELSE 'FAIL' END AS Result
 FROM (
-          SELECT 'gold.dimcurrency'      AS TableName, COUNT(*) AS ActualRows FROM gold.dimcurrency
+    SELECT 
+        'gold.dimcurrency' AS TableName, 
+        COUNT(*) AS ActualRows 
+    FROM
+        gold.dimcurrency
     UNION ALL SELECT 'gold.dimperiod',        COUNT(*) FROM gold.dimperiod
     UNION ALL SELECT 'gold.dimsupplier',      COUNT(*) FROM gold.dimsupplier
     UNION ALL SELECT 'gold.factexchangerate', COUNT(*) FROM gold.factexchangerate
@@ -33,14 +37,18 @@ JOIN
         ('gold.factbudget', 107), 
         ('gold.factactual', 214)
 ) e (TableName, ExpectedRows) ON e.TableName = t.TableName;
- 
+GO 
 
 -- A2. Suppliers per currency (expect GBP 5, EUR 4, JPY 3)
-SELECT CurrencyCode, COUNT(*) AS Suppliers,
-       STRING_AGG(SupplierName, ', ') AS SupplierNames
-FROM gold.dimsupplier
-GROUP BY CurrencyCode
-ORDER BY CurrencyCode;
+SELECT CurrencyCode, 
+    COUNT(*) AS Suppliers,
+    STRING_AGG(SupplierName, ', ') AS SupplierNames
+FROM 
+    gold.dimsupplier
+GROUP BY 
+    CurrencyCode
+ORDER BY 
+    CurrencyCode;
 GO
 
 -- A3. Referential integrity (essential on Fabric, where FKs are NOT ENFORCED). Expect 0 for every check.
@@ -64,42 +72,93 @@ GO
 
 
 -- A4. Uniqueness (keys are not enforced on Fabric). Expect no rows.
-SELECT 'Duplicate budget supplier-month' AS Issue, SupplierSK, PeriodKey, COUNT(*) AS Cnt
-FROM    gold.factbudget GROUP BY SupplierSK, PeriodKey HAVING COUNT(*) > 1
+SELECT 
+    'Duplicate budget supplier-month' AS Issue, 
+    SupplierSK, 
+    PeriodKey, 
+    COUNT(*) AS Cnt
+FROM    
+    gold.factbudget 
+GROUP BY 
+    SupplierSK, 
+    PeriodKey 
+    HAVING COUNT(*) > 1
 UNION ALL
-SELECT 'Duplicate invoice number', SupplierSK, NULL, COUNT(*)
-FROM gold.factactual GROUP BY SupplierSK, InvoiceNumber HAVING COUNT(*) > 1;
+SELECT 
+    'Duplicate invoice number', 
+    SupplierSK, 
+    NULL, 
+    COUNT(*)
+FROM 
+    gold.factactual 
+GROUP BY
+    SupplierSK, 
+    InvoiceNumber 
+    HAVING COUNT(*) > 1;
 GO
 
 -- A5. Fact currency must equal the supplier's invoicing currency. Expect 0.
-SELECT 'Budget' AS FactTable, COUNT(*) AS Mismatches
-FROM gold.factbudget f JOIN gold.dimsupplier s ON s.SupplierSK = f.SupplierSK
-WHERE f.CurrencyCode <> s.CurrencyCode
+SELECT 
+    'Budget' AS FactTable, 
+    COUNT(*) AS Mismatches
+FROM 
+    gold.factbudget f JOIN gold.dimsupplier s ON s.SupplierSK = f.SupplierSK
+WHERE 
+    f.CurrencyCode <> s.CurrencyCode
 UNION ALL
-SELECT 'Actual', COUNT(*)
-FROM gold.factactual f JOIN gold.dimsupplier s ON s.SupplierSK = f.SupplierSK
-WHERE f.CurrencyCode <> s.CurrencyCode;
+SELECT 
+    'Actual', COUNT(*)
+FROM 
+    gold.factactual f JOIN gold.dimsupplier s ON s.SupplierSK = f.SupplierSK
+WHERE 
+    f.CurrencyCode <> s.CurrencyCode;
+GO
 
 -- A6. Invoice date must fall inside its PeriodKey month. Expect 0.
-SELECT COUNT(*) AS InvoicesOutsidePeriod
-FROM gold.factactual a
-JOIN gold.dimperiod p ON p.PeriodKey = a.PeriodKey
-WHERE a.InvoiceDate NOT BETWEEN p.PeriodStartDate AND p.PeriodEndDate;
-
+SELECT 
+    COUNT(*) AS InvoicesOutsidePeriod
+FROM 
+    gold.factactual a
+JOIN 
+    gold.dimperiod p ON p.PeriodKey = a.PeriodKey
+WHERE 
+    a.InvoiceDate NOT BETWEEN p.PeriodStartDate AND p.PeriodEndDate;
+GO
 
 
 -- A7. Exchange-rate coverage: every currency needs a BUDGET rate for all 12 months
 --     and an ACTUAL rate for every month that has invoices. Expect no rows.
-SELECT c.CurrencyCode, p.PeriodKey, 'Missing BUDGET rate' AS Issue
-FROM gold.dimcurrency c CROSS JOIN gold.dimperiod p
-WHERE NOT EXISTS (SELECT 1 FROM gold.factexchangerate r
-                  WHERE r.CurrencyCode = c.CurrencyCode AND r.PeriodKey = p.PeriodKey AND r.RateType = 'BUDGET')
+SELECT 
+    c.CurrencyCode, 
+    p.PeriodKey,
+     'Missing BUDGET rate' AS Issue
+FROM 
+    gold.dimcurrency c 
+CROSS JOIN gold.dimperiod p
+WHERE NOT EXISTS 
+(
+        SELECT 1 
+        FROM 
+            gold.factexchangerate r
+        WHERE 
+            r.CurrencyCode = c.CurrencyCode AND 
+            r.PeriodKey = p.PeriodKey AND r.RateType = 'BUDGET'
+)
 UNION ALL
-SELECT DISTINCT a.CurrencyCode, a.PeriodKey, 'Missing ACTUAL rate'
-FROM gold.factactual a
-WHERE NOT EXISTS (SELECT 1 FROM gold.factexchangerate r
-                  WHERE r.CurrencyCode = a.CurrencyCode AND r.PeriodKey = a.PeriodKey AND r.RateType = 'ACTUAL');
-
+SELECT DISTINCT 
+    a.CurrencyCode, 
+    a.PeriodKey, 
+    'Missing ACTUAL rate'
+FROM 
+    gold.factactual a
+WHERE NOT EXISTS 
+(
+        SELECT 1 
+        FROM gold.factexchangerate r
+        WHERE 
+        r.CurrencyCode = a.CurrencyCode AND r.PeriodKey = a.PeriodKey AND r.RateType = 'ACTUAL'
+);
+GO
 
 
 -- A8. Coverage gaps (supplier-months with budget but no invoices, or invoices but no budget).
@@ -108,7 +167,7 @@ SELECT SupplierName, FiscalPeriodLabel, BudgetLocal, ActualLocal, InvoiceCount, 
 FROM gold.vw_SupplierMonthVariance
 WHERE InvoiceCount = 0 OR IsUnbudgeted = 1
 ORDER BY PeriodKey, SupplierName;
-
+GO
 
  
 
@@ -126,6 +185,7 @@ JOIN (VALUES ('GBP',   1695860.00,   1700308.48),
              ('EUR',   1098390.00,   1134880.56),
              ('JPY', 166991000.00, 165616840.00)
      ) e (CurrencyCode, ExpBudget, ExpActual) ON e.CurrencyCode = x.CurrencyCode;
+GO
 
 -- A10. Control totals in GBP by fiscal quarter, and the variance bridge
 --      (SpendVariance + FxVariance must equal total Variance).
@@ -150,6 +210,6 @@ JOIN (VALUES (1, 1208935.30, 1209979.21,   6135.83, -5091.92),
              (2, 1115415.20, 1170267.50,  62612.19, -7759.89),
              (3, 1173494.20, 1139523.86, -40428.18,  6457.84)
      ) e (FiscalQuarter, ExpBudgetGBP, ExpActualGBP, ExpSpendVar, ExpFxVar) ON e.FiscalQuarter = q.FiscalQuarter
-ORDER BY q.FiscalQuarter;
-
-
+ORDER BY 
+    q.FiscalQuarter;
+GO
