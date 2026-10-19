@@ -1,7 +1,13 @@
-CREATE VIEW gold.vw_SupplierQuarterVariance
+CREATE VIEW Gold.vw_SupplierQuarterVariance
 AS
-SELECT SupplierSK, SupplierCode, SupplierName, CurrencyCode,
-       FiscalYearLabel, FiscalQuarter, FiscalQuarterLabel,
+SELECT 
+       SupplierSK, 
+       SupplierCode, 
+       SupplierName, 
+       CurrencyCode,
+       FiscalYearLabel, 
+       FiscalQuarter, 
+       FiscalQuarterLabel,
        SUM(BudgetLocal)      AS BudgetLocal,
        SUM(ActualLocal)      AS ActualLocal,
        SUM(VarianceLocal)    AS VarianceLocal,
@@ -12,7 +18,14 @@ SELECT SupplierSK, SupplierCode, SupplierName, CurrencyCode,
        SUM(VarianceGBP)      AS VarianceGBP,
        SUM(SpendVarianceGBP) AS SpendVarianceGBP,
        SUM(FxVarianceGBP)    AS FxVarianceGBP
-FROM gold.vw_SupplierMonthVariance
-GROUP BY SupplierSK, SupplierCode, SupplierName, CurrencyCode,
-         FiscalYearLabel, FiscalQuarter, FiscalQuarterLabel;
+FROM 
+       Gold.vw_SupplierMonthVariance
+GROUP BY 
+       SupplierSK, 
+       SupplierCode, 
+       SupplierName, 
+       CurrencyCode,
+       FiscalYearLabel, 
+       FiscalQuarter, 
+       FiscalQuarterLabel;
 GO

@@ -1,5 +1,5 @@
 /* =============================================================================
-   Bronze load: ACME_LH.dbo.budget  ->  ACME_SQLWH.bronze.budget
+   Bronze load: ACME_LH.dbo.Budget  ->  ACME_SQLWH.Bronze.Budget
    Run in the ACME_SQLWH warehouse (workspace: ACME).
 
    Reads the lakehouse through its SQL analytics endpoint with a cross-database
@@ -7,7 +7,7 @@
    Bronze = a raw copy of the source columns plus load-audit columns.
    Each run does a full reload (truncate + insert) so it is safe to re-run.
    ============================================================================= */
-CREATE PROCEDURE bronze.usp_load_budget
+CREATE PROCEDURE Bronze.usp_Load_Budget
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -17,51 +17,51 @@ BEGIN
 
     BEGIN TRANSACTION;
 
-        TRUNCATE TABLE bronze.budget;
+        TRUNCATE TABLE Bronze.Budget;
 
-        INSERT INTO bronze.budget
+        INSERT INTO Bronze.Budget
         (
-            suppliercode, 
-            period, 
-            currencycode, 
-            budgetamountlocal, 
-            budgetnote,         
-            budget_year, 
-            budget_month, 
-            budget_period,
-            wbscode,
-            costtype,                
-            version, 
-            source_file, 
-            loaded_at,
-            _ingested_at, 
-            _source_system, 
-            _batch_id
+            SupplierCode, 
+            Period, 
+            CurrencyCode, 
+            BudgetAmountLocal, 
+            BudgetNote,         
+            Budget_Year, 
+            Budget_Month, 
+            Budget_Period,
+            WBSCode,
+            CostType,                
+            Version, 
+            Source_File, 
+            Loaded_At,
+            _Ingested_At, 
+            _Source_System, 
+            _Batch_Id
         )
         SELECT
-            b.suppliercode, 
-            b.period, 
-            b.currencycode,
-            b.budgetamountlocal, 
-            b.budgetnote,          
-            b.budget_year, 
-            b.budget_month, 
-            b.budget_period, 
-            b.wbscode,
-            b.costtype,               
-            b.version, 
-            b.source_file, 
-            b.loaded_at,
+            b.SupplierCode, 
+            b.Period, 
+            b.CurrencyCode,
+            b.BudgetAmountLocal, 
+            b.BudgetNote,          
+            b.Budget_Year, 
+            b.Budget_Month, 
+            b.Budget_Period, 
+            b.WBSCode,
+            b.CostType,               
+            b.Version, 
+            b.Source_File, 
+            b.Loaded_At,
             @ingested_at, 
-            'ACME_LH.dbo.budget', 
+            'ACME_LH.dbo.Budget', 
             @batch_id
         FROM 
-            ACME_LH.dbo.budget AS b;
+            ACME_LH.dbo.Budget AS b;
 
     COMMIT TRANSACTION;
         SELECT 
             @batch_id AS batch_id, 
             @ingested_at AS ingested_at,
-            (SELECT COUNT(*) FROM bronze.budget) AS rows_loaded;
+            (SELECT COUNT(*) FROM Bronze.Budget) AS rows_loaded;
 END;
 GO

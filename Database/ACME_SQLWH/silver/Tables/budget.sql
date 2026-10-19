@@ -1,31 +1,31 @@
 /*
-    DROP TABLE [silver].[budget] 
+    DROP TABLE [Silver].[Budget] 
 */
-CREATE TABLE [silver].[budget] (
+CREATE TABLE [Silver].[Budget] (
     [BudgetSK]          BIGINT         NOT NULL,
-    [suppliercode]      VARCHAR (8000) NOT NULL,
-    [period]            INT            NOT NULL,
-    [currencycode]      VARCHAR (8000) NULL,
-    [budgetamountlocal] FLOAT (53)     NULL,
-    [budgetnote]        VARCHAR (8000) NULL,
-    [budget_year]       INT            NULL,
-    [budget_month]      INT            NULL,
-    [budget_period]     DATE           NULL,
-    [wbscode]           varchar(50)     null,
-    [costtype]           varchar(50)     null,
-    [version]           INT            NULL,
-    [source_file]       VARCHAR (8000) NULL,
-    [loaded_at]         DATETIME2 (6)  NULL,
+    [SupplierCode]      VARCHAR (8000) NOT NULL,
+    [Period]            INT            NOT NULL,
+    [CurrencyCode]      VARCHAR (8000) NULL,
+    [BudgetAmountLocal] FLOAT (53)     NULL,
+    [BudgetNote]       VARCHAR (8000) NULL,
+    [Budget_Year]       INT            NULL,
+    [Budget_Month]      INT            NULL,
+    [Budget_Period]     DATE           NULL,
+    [WBSCode]           VARCHAR(50)     null,
+    [CostType]          VARCHAR(50)     null,
+    [Version]           INT            NULL,
+    [Source_File]       VARCHAR (8000) NULL,
+    [Loaded_At]         DATETIME2 (6)  NULL,
     [RowHash]           VARBINARY (32) NOT NULL,
     [ValidFrom]         DATETIME2 (6)  NOT NULL,
     [ValidTo]           DATETIME2 (6)  NOT NULL,
     [IsCurrent]         BIT            NOT NULL,
-    [_batch_id]         VARCHAR (36)   NOT NULL,
-    [_created_at]       DATETIME2 (6)  NOT NULL,
-    [_updated_at]       DATETIME2 (6)  NOT NULL
+    [_Batch_Id]         VARCHAR (36)   NOT NULL,
+    [_Created_At]       DATETIME2 (6)  NOT NULL,
+    [_Updated_At]       DATETIME2 (6)  NOT NULL
 );
 GO
 
-ALTER TABLE [silver].[budget]
-    ADD CONSTRAINT [PK_silver_budget] PRIMARY KEY NONCLUSTERED ([BudgetSK] ASC) NOT ENFORCED;
+ALTER TABLE [Silver].[Budget]
+    ADD CONSTRAINT [PK_Silver_Budget] PRIMARY KEY NONCLUSTERED ([BudgetSK] ASC) NOT ENFORCED;
 GO

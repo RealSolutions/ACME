@@ -58,12 +58,12 @@ nunit-*.xml
 dlldata.c
 
 # Benchmark Results
-BenchmarkDotNet.Artifacts/
+BenchmarkDotNet.ArtiFacts/
 
 # .NET
 project.lock.json
 project.fragment.lock.json
-artifacts/
+artiFacts/
 
 # Tye
 .tye/
@@ -221,7 +221,7 @@ rcf/
 
 # Windows Store app package directories and files
 AppPackages/
-BundleArtifacts/
+BundleArtiFacts/
 Package.StoreAssociation.xml
 _pkginfo.txt
 *.appx
@@ -257,7 +257,7 @@ orleans.codegen.cs
 Generated_Code/
 
 # Backup & report files from converting an old project file
-# to a newer Visual Studio version. Backup files are not needed,
+# to a newer Visual Studio Version. Backup files are not needed,
 # because we have git ;-)
 _UpgradeReport_Files/
 Backup*/
@@ -311,10 +311,10 @@ node_modules/
 *.aps
 
 # Visual Studio LightSwitch build output
-**/*.HTMLClient/GeneratedArtifacts
-**/*.DesktopClient/GeneratedArtifacts
+**/*.HTMLClient/GeneratedArtiFacts
+**/*.DesktopClient/GeneratedArtiFacts
 **/*.DesktopClient/ModelManifest.xml
-**/*.Server/GeneratedArtifacts
+**/*.Server/GeneratedArtiFacts
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
 

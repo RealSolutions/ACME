@@ -1,9 +1,9 @@
 /*
-    select * from  gold.factactual
-    select * from gold.factexchangerate
-    SELECT * FROM gold.vw_SupplierMonthVariance
+    select * from  Gold.FactActual
+    select * from Gold.FactExchangeRate
+    SELECT * FROM Gold.vw_SupplierMonthVariance
 */
-CREATE  VIEW gold.vw_SupplierMonthVariance
+CREATE  VIEW Gold.vw_SupplierMonthVariance
 AS
 WITH bud AS
 (
@@ -12,7 +12,7 @@ WITH bud AS
         PeriodKey, 
         SUM(BudgetAmountLocal) AS BudgetLocal
     FROM 
-        gold.factbudget
+        Gold.FactBudget
     GROUP BY 
         SupplierSK,
         PeriodKey
@@ -25,19 +25,19 @@ act AS
         SUM(AmountLocal) AS ActualLocal, 
         COUNT(*) AS InvoiceCount
     FROM 
-        gold.factactual
+        Gold.FactActual
     GROUP BY 
         SupplierSK, 
         PeriodKey
 ),
-grid AS   -- full outer join keeps unbudgeted spend AND budgets with no invoices
+grid AS   -- full outer join keeps unBudgeted spend AND Budgets with no invoices
 (
     SELECT COALESCE(b.SupplierSK, a.SupplierSK) AS SupplierSK,
            COALESCE(b.PeriodKey,   a.PeriodKey)   AS PeriodKey,
            COALESCE(b.BudgetLocal, 0)             AS BudgetLocal,
            COALESCE(a.ActualLocal, 0)             AS ActualLocal,
            COALESCE(a.InvoiceCount, 0)            AS InvoiceCount,
-           CASE WHEN b.SupplierSK IS NULL THEN 1 ELSE 0 END AS IsUnbudgeted
+           CASE WHEN b.SupplierSK IS NULL THEN 1 ELSE 0 END AS IsUnBudgeted
     FROM bud b
     FULL OUTER JOIN act a
       ON a.SupplierSK = b.SupplierSK
@@ -51,7 +51,7 @@ conv AS
         g.BudgetLocal,
         g.ActualLocal,
         g.InvoiceCount,
-        g.IsUnbudgeted,
+        g.IsUnBudgeted,
 
         s.SupplierCode,
         s.SupplierName, 
@@ -59,15 +59,15 @@ conv AS
         s.SpendCategory, 
         s.CountryName,
         rb.RateToGBP AS BudgetRate,
-        COALESCE(ra.RateToGBP, rb.RateToGBP) AS ActualRate,   -- no actual rate yet (future month) -> budget rate
+        COALESCE(ra.RateToGBP, rb.RateToGBP) AS ActualRate,   -- no Actual rate yet (future month) -> Budget rate
         CAST(ROUND(g.BudgetLocal * rb.RateToGBP, 2) AS decimal(19,2)) AS BudgetGBP,
         CAST(ROUND(g.ActualLocal * COALESCE(ra.RateToGBP, rb.RateToGBP), 2) AS decimal(19,2)) AS ActualGBP,
         CAST(ROUND(g.ActualLocal * rb.RateToGBP, 2) AS decimal(19,2)) AS ActualAtBudgetRateGBP
     FROM 
         grid g
-    JOIN gold.dimsupplier s       ON s.SupplierSK = g.SupplierSK
-    JOIN gold.factexchangerate rb ON rb.CurrencyCode = s.CurrencyCode AND rb.PeriodKey = g.PeriodKey AND rb.RateType = 'BUDGET'
-    LEFT JOIN gold.factexchangerate ra ON ra.CurrencyCode = s.CurrencyCode AND ra.PeriodKey = g.PeriodKey AND ra.RateType = 'ACTUAL'
+    JOIN Gold.DimSupplier s       ON s.SupplierSK = g.SupplierSK
+    JOIN Gold.FactExchangeRate rb ON rb.CurrencyCode = s.CurrencyCode AND rb.PeriodKey = g.PeriodKey AND rb.RateType = 'Budget'
+    LEFT JOIN Gold.FactExchangeRate ra ON ra.CurrencyCode = s.CurrencyCode AND ra.PeriodKey = g.PeriodKey AND ra.RateType = 'Actual'
 )
 SELECT 
     c.SupplierSK, 
@@ -87,8 +87,8 @@ SELECT
     p.FiscalQuarterLabel, 
     p.FiscalPeriodLabel,
     c.InvoiceCount, 
-    c.IsUnbudgeted,
-    -- supplier (local) currency
+    c.IsUnBudgeted,
+    -- Supplier (local) currency
     c.BudgetLocal,
     c.ActualLocal,
     c.ActualLocal - c.BudgetLocal                                         AS VarianceLocal,
@@ -101,9 +101,9 @@ SELECT
        c.ActualGBP - c.BudgetGBP                                             AS VarianceGBP,
        c.ActualAtBudgetRateGBP - c.BudgetGBP                                 AS SpendVarianceGBP,
        c.ActualGBP - c.ActualAtBudgetRateGBP                                 AS FxVarianceGBP,
-       CASE WHEN c.BudgetLocal = 0 AND c.ActualLocal > 0 THEN 'Unbudgeted'
-            WHEN c.ActualLocal > c.BudgetLocal * 1.05     THEN 'Over budget'
-            WHEN c.ActualLocal < c.BudgetLocal * 0.95     THEN 'Under budget'
-            ELSE 'On budget (+/-5%)' END                                     AS VarianceStatus
+       CASE WHEN c.BudgetLocal = 0 AND c.ActualLocal > 0 THEN 'UnBudgeted'
+            WHEN c.ActualLocal > c.BudgetLocal * 1.05     THEN 'Over Budget'
+            WHEN c.ActualLocal < c.BudgetLocal * 0.95     THEN 'Under Budget'
+            ELSE 'On Budget (+/-5%)' END                                     AS VarianceStatus
     FROM conv c
-    JOIN gold.dimperiod p ON p.PeriodKey = c.PeriodKey;
+    JOIN Gold.DimPeriod p ON p.PeriodKey = c.PeriodKey;

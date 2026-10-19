@@ -1,7 +1,7 @@
 /*
-    DROP TABLE  [gold].[factactual]
+    DROP TABLE  [Gold].[FactActual]
 */
-CREATE TABLE [gold].[factactual] (
+CREATE TABLE [Gold].[FactActual] (
     [ActualSK]          BIGINT          NOT NULL,
     [SupplierSK]        BIGINT          NOT NULL,
     [SupplierCode]      VARCHAR (8000)  NULL,
@@ -15,18 +15,18 @@ CREATE TABLE [gold].[factactual] (
     [CurrencyCode]      VARCHAR (8000)  NOT NULL,
     [AmountLocal]       DECIMAL (19, 4) NULL,
     [Description]       VARCHAR (8000)  NULL,
-        [wbscode]           varchar(50) null,
-    [costtype]           varchar(50) null,  
+    [WBSCode]           varchar(50) null,
+    [CostType]           varchar(50) null,  
     [ActualVersion]     INT             NULL,
     [SupplierMatchType] VARCHAR (20)    NOT NULL,
-    [_loaded_at]        DATETIME2 (6)   NOT NULL
+    [_Loaded_At]        DATETIME2 (6)   NOT NULL
 );
 GO
 
-ALTER TABLE [gold].[factactual]
-    ADD CONSTRAINT [FK_gold_factactual_supplier] FOREIGN KEY ([SupplierSK]) REFERENCES [gold].[dimsupplier] ([SupplierSK]) NOT ENFORCED;
+ALTER TABLE [Gold].[FactActual]
+    ADD CONSTRAINT [FK_Gold_FactActual_Supplier] FOREIGN KEY ([SupplierSK]) REFERENCES [Gold].[DimSupplier] ([SupplierSK]) NOT ENFORCED;
 GO
 
-ALTER TABLE [gold].[factactual]
-    ADD CONSTRAINT [PK_gold_factactual] PRIMARY KEY NONCLUSTERED ([ActualSK] ASC) NOT ENFORCED;
+ALTER TABLE [Gold].[FactActual]
+    ADD CONSTRAINT [PK_Gold_FactActual] PRIMARY KEY NONCLUSTERED ([ActualSK] ASC) NOT ENFORCED;
 GO

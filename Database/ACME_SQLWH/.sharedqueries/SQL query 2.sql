@@ -1,5 +1,5 @@
-drop table [gold].[factbudget] 
-drop table [gold].[factsupplier]
+drop table [Gold].[FactBudget] 
+drop table [Gold].[FactSupplier]
 
 
 SELECT OBJECT_SCHEMA_NAME(parent_object_id) AS schema_name,
@@ -11,7 +11,7 @@ WHERE  type IN ('PK', 'F', 'UQ')   -- primary key, foreign key, unique
 ORDER  BY schema_name, table_name;
 
 
-CREATE TABLE [gold].[dimsupplier] (
+CREATE TABLE [Gold].[DimSupplier] (
     [SupplierSK]          BIGINT         NOT NULL,
     [SupplierCode]        VARCHAR (8000) NOT NULL,
     [SupplierName]        VARCHAR (8000) NOT NULL,
@@ -27,13 +27,13 @@ CREATE TABLE [gold].[dimsupplier] (
 );
 GO
 
-ALTER TABLE [gold].[dimsupplier]
-    ADD CONSTRAINT [PK_gold_dimsupplier] PRIMARY KEY NONCLUSTERED ([SupplierSK] ASC) NOT ENFORCED;
+ALTER TABLE [Gold].[DimSupplier]
+    ADD CONSTRAINT [PK_Gold_DimSupplier] PRIMARY KEY NONCLUSTERED ([SupplierSK] ASC) NOT ENFORCED;
 GO
 
 
 
-CREATE TABLE [gold].[factbudget] (
+CREATE TABLE [Gold].[FactBudget] (
     [BudgetSK]          BIGINT          NOT NULL,
     [SupplierSK]        BIGINT          NOT NULL,
     [SupplierCode]      VARCHAR (8000)  NOT NULL,
@@ -43,17 +43,17 @@ CREATE TABLE [gold].[factbudget] (
     [BudgetMonth]       INT             NULL,
     [CurrencyCode]      VARCHAR (8000)  NOT NULL,
     [BudgetAmountLocal] DECIMAL (19, 4) NULL,
-    [BudgetNote]        VARCHAR (8000)  NULL,
+    [CBudgetNote]        VARCHAR (8000)  NULL,
     [BudgetVersion]     INT             NULL,
     [SupplierMatchType] VARCHAR (20)    NOT NULL,
     [_loaded_at]        DATETIME2 (6)   NOT NULL
 );
 GO
 
-ALTER TABLE [gold].[factbudget]
-    ADD CONSTRAINT [FK_gold_factbudget_supplier] FOREIGN KEY ([SupplierSK]) REFERENCES [gold].[dimsupplier] ([SupplierSK]) NOT ENFORCED;
+ALTER TABLE [Gold].[FactBudget]
+    ADD CONSTRAINT [FK_Gold_FactBudget_Supplier] FOREIGN KEY ([SupplierSK]) REFERENCES [Gold].[DimSupplier] ([SupplierSK]) NOT ENFORCED;
 GO
 
-ALTER TABLE [gold].[factbudget]
-    ADD CONSTRAINT [PK_gold_factbudget] PRIMARY KEY NONCLUSTERED ([BudgetSK] ASC) NOT ENFORCED;
+ALTER TABLE [Gold].[FactBudget]
+    ADD CONSTRAINT [PK_Gold_FactBudget] PRIMARY KEY NONCLUSTERED ([BudgetSK] ASC) NOT ENFORCED;
 GO

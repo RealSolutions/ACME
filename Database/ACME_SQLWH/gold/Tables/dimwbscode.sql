@@ -1,9 +1,12 @@
-CREATE TABLE [gold].[dimwbscode]
+CREATE TABLE [Gold].[DimWBSCode]
 (
-  [wbscode] varchar(50) NOT NULL PRIMARY KEY,  
-  [parentwbscode] varchar(50) NULL,
-  [wbslevel] int NOT NULL,
-  [sortorder] int NOT NULL,
-  [description] varchar(255) NOT NULL  
+  [WBSCode] varchar(50) NOT NULL,  
+  [ParentWBSCode] varchar(50) NULL,
+  [WBSLevel] int NOT NULL,
+  [SortOrder] int NOT NULL,
+  [Description] varchar(255) NOT NULL  
 )
+GO
+ALTER TABLE [Gold].[DimWBSCode]
+    ADD CONSTRAINT [PK_GoldWBSCode] PRIMARY KEY NONCLUSTERED ([WBSCode] ASC) NOT ENFORCED;
 GO

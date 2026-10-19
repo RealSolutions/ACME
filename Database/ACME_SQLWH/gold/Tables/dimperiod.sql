@@ -1,4 +1,4 @@
-CREATE TABLE [gold].[dimperiod] (
+CREATE TABLE [Gold].[DimPeriod] (
     [PeriodKey]          INT          NOT NULL,
     [PeriodStartDate]    DATE         NOT NULL,
     [PeriodEndDate]      DATE         NOT NULL,
@@ -13,4 +13,7 @@ CREATE TABLE [gold].[dimperiod] (
     [FiscalQuarterLabel] VARCHAR (15) NOT NULL,
     [FiscalPeriodLabel]  VARCHAR (15) NOT NULL
 );
+GO
+
+ALTER TABLE [Gold].[DimPeriod] ADD PRIMARY KEY NONCLUSTERED ([PeriodKey] ASC) NOT ENFORCED;
 GO

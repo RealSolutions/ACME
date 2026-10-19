@@ -1,5 +1,5 @@
 /* =============================================================================
-   Bronze load: ACME_LH.dbo.supplier  ->  ACME_SQLWH.bronze.supplier
+   Bronze load: ACME_LH.dbo.Supplier  ->  ACME_SQLWH.Bronze.Supplier
    Run in the ACME_SQLWH warehouse (workspace: ACME).
 
    Reads the lakehouse through its SQL analytics endpoint with a cross-database
@@ -7,7 +7,7 @@
    Bronze = a raw copy of the source columns plus load-audit columns.
    Each run does a full reload (truncate + insert) so it is safe to re-run.
    ============================================================================= */
-CREATE   PROCEDURE bronze.usp_load_supplier
+CREATE   PROCEDURE Bronze.usp_Load_Supplier
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -17,9 +17,9 @@ BEGIN
 
     BEGIN TRANSACTION;
 
-        TRUNCATE TABLE bronze.supplier;
+        TRUNCATE TABLE Bronze.Supplier;
 
-        INSERT INTO bronze.supplier
+        INSERT INTO Bronze.Supplier
         (
             SupplierCode, 
             SupplierName, 
@@ -27,9 +27,10 @@ BEGIN
             CurrencyCode,
             SpendCategory, 
             PaymentTermsDays, 
-            _ingested_at, 
-            _source_system, 
-            _batch_id
+
+            _Ingested_At, 
+            _Source_System, 
+            _Batch_Id
         )
         SELECT
             s.SupplierCode, 
@@ -38,13 +39,15 @@ BEGIN
             s.CurrencyCode,
             s.SpendCategory, 
             s.PaymentTermsDays, 
+
             @ingested_at, 
-            'ACME_LH.dbo.supplier', 
+            'ACME_LH.dbo.Supplier', 
             @batch_id
-        FROM ACME_LH.dbo.supplier AS s;
+        FROM 
+        ACME_LH.dbo.Supplier AS s;
 
     COMMIT TRANSACTION;
         SELECT @batch_id AS batch_id, @ingested_at AS ingested_at,
-           (SELECT COUNT(*) FROM bronze.supplier) AS rows_loaded;
+           (SELECT COUNT(*) FROM Bronze.Supplier) AS rows_loaded;
 END;
 GO

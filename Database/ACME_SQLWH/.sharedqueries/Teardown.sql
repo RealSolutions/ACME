@@ -8,7 +8,7 @@ Microsoft Fabric Warehouse: drop ALL user objects
 6. User schemas (dbo and system schemas are kept)
 
 SAFETY: @Execute = 0 (default) only RETURNS the generated SQL so you
-can review it. Set @Execute = 1 to actually run it.
+can review it. Set @Execute = 1 to Actually run it.
 NOTE: Fabric Warehouse has no cursors, so dynamic SQL is built with
 STRING_AGG and run with sp_executesql.
  

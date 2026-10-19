@@ -1,7 +1,7 @@
 /*
-    DROP TABLE [silver].[actual]
+    DROP TABLE [Silver].[Actual]
 */
-CREATE TABLE [silver].[actual] (
+CREATE TABLE [Silver].[Actual] (
     [ActualSK]        BIGINT         NOT NULL,
     [InvoiceNumber]   VARCHAR (8000) NOT NULL,
     [SupplierCode]    VARCHAR (8000) NULL,
@@ -11,24 +11,24 @@ CREATE TABLE [silver].[actual] (
     [CurrencyCode]    VARCHAR (8000) NULL,
     [AmountLocal]     FLOAT (53)     NULL,
     [Description]     VARCHAR (8000) NULL,
-    [wbscode]           varchar(50) null,
-    [costtype]           varchar(50) null,    
-    [version]         INT            NULL,
-    [actual_year]     INT            NULL,
-    [actual_month]    INT            NULL,
-    [actual]          DATE           NULL,
-    [source_file]     VARCHAR (8000) NULL,
-    [loaded_at]       DATETIME2 (6)  NULL,
+    [WBSCode]         VARCHAR(50) null,
+    [CostType]        VARCHAR(50) null,    
+    [Version]         INT            NULL,
+    [Actual_Year]     INT            NULL,
+    [Actual_Month]    INT            NULL,
+    [Actual]          DATE           NULL,
+    [Source_File]     VARCHAR (8000) NULL,
+    [Loaded_At]       DATETIME2 (6)  NULL,
     [RowHash]         VARBINARY (32) NOT NULL,
     [ValidFrom]       DATETIME2 (6)  NOT NULL,
     [ValidTo]         DATETIME2 (6)  NOT NULL,
     [IsCurrent]       BIT            NOT NULL,
-    [_batch_id]       VARCHAR (36)   NOT NULL,
-    [_created_at]     DATETIME2 (6)  NOT NULL,
-    [_updated_at]     DATETIME2 (6)  NOT NULL
+    [_Batch_Id]       VARCHAR (36)   NOT NULL,
+    [_Created_At]     DATETIME2 (6)  NOT NULL,
+    [_Updated_At]     DATETIME2 (6)  NOT NULL
 );
 GO
 
-ALTER TABLE [silver].[actual]
-    ADD CONSTRAINT [PK_silver_actual] PRIMARY KEY NONCLUSTERED ([ActualSK] ASC) NOT ENFORCED;
+ALTER TABLE [Silver].[Actual]
+    ADD CONSTRAINT [PK_Silver_Actual] PRIMARY KEY NONCLUSTERED ([ActualSK] ASC) NOT ENFORCED;
 GO

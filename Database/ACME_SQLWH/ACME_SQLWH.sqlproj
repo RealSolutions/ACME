@@ -18,6 +18,8 @@
   <ItemGroup>
     <Build Remove=".sharedqueries\**" />
     <Build Remove="T1.sql" />
+    <Build Remove="SectionA.sql" />
+    <Build Remove="SectionB.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeployment1.sql" />

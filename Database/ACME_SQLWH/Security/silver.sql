@@ -1,4 +1,3 @@
-CREATE SCHEMA [silver]
+CREATE SCHEMA [Silver]
     AUTHORIZATION [dbo];
 GO
-

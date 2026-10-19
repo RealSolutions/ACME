@@ -1,56 +1,56 @@
 -- Write your own SQL object definition here, and it'll be included in your package.
 --Loader Executor
-EXEC bronze.usp_load_supplier
+EXEC Bronze.usp_Load_Supplier
 GO
-EXEC silver.usp_load_supplier
+EXEC Silver.usp_Load_Supplier
 GO
-EXEC gold.usp_load_dimsupplier
-GO
-
-select * from  bronze.supplier
+EXEC Gold.usp_Load_DimSupplier
 GO
 
-select * from  silver.supplier
+select * from  Bronze.Supplier
 GO
 
-select * from  gold.dimsupplier
+select * from  Silver.Supplier
 GO
 
-
-
--- ----------------------------------------
-EXEC bronze.usp_load_budget
-GO
-EXEC silver.usp_load_budget
-GO
-EXEC gold.usp_load_factbudget
+select * from  Gold.DimSupplier
 GO
 
-select * from  bronze.budget
-GO
-
-select * from  silver.budget
-GO
-
-select * from  gold.factbudget
-GO
 
 
 -- ----------------------------------------
-truncate table  silver.actual
-truncate table  gold.factactual
-EXEC bronze.usp_load_actual
+EXEC Bronze.usp_Load_Budget
 GO
-EXEC silver.usp_load_actual
+EXEC Silver.usp_Load_Budget
 GO
-EXEC gold.usp_load_factactual
+EXEC Gold.usp_Load_FactBudget
 GO
 
-select * from  bronze.actual
+select * from  Bronze.Budget
 GO
 
-select * from  silver.actual
+select * from  Silver.Budget
 GO
 
-select * from  gold.factactual
+select * from  Gold.FactBudget
+GO
+
+
+-- ----------------------------------------
+truncate table  Silver.Actual
+truncate table  Gold.FactActual
+EXEC Bronze.usp_Load_Actual
+GO
+EXEC Silver.usp_Load_Actual
+GO
+EXEC Gold.usp_Load_FactActual
+GO
+
+select * from  Bronze.Actual
+GO
+
+select * from  Silver.Actual
+GO
+
+select * from  Gold.FactActual
 GO

@@ -1,4 +1,4 @@
-CREATE TABLE [silver].[supplier] (
+CREATE TABLE [Silver].[Supplier] (
     [SupplierSK]       BIGINT         NOT NULL,
     [SupplierCode]     VARCHAR (8000) NOT NULL,
     [SupplierName]     VARCHAR (8000) NULL,
@@ -10,12 +10,12 @@ CREATE TABLE [silver].[supplier] (
     [ValidFrom]        DATETIME2 (6)  NOT NULL,
     [ValidTo]          DATETIME2 (6)  NOT NULL,
     [IsCurrent]        BIT            NOT NULL,
-    [_batch_id]        VARCHAR (36)   NOT NULL,
-    [_created_at]      DATETIME2 (6)  NOT NULL,
-    [_updated_at]      DATETIME2 (6)  NOT NULL
+    [_Batch_Id]        VARCHAR (36)   NOT NULL,
+    [_Created_At]      DATETIME2 (6)  NOT NULL,
+    [_Updated_At]      DATETIME2 (6)  NOT NULL
 );
 GO
 
-ALTER TABLE [silver].[supplier]
-    ADD CONSTRAINT [PK_silver_supplier] PRIMARY KEY NONCLUSTERED ([SupplierSK] ASC) NOT ENFORCED;
+ALTER TABLE [Silver].[Supplier]
+    ADD CONSTRAINT [PK_Silver_Supplier] PRIMARY KEY NONCLUSTERED ([SupplierSK] ASC) NOT ENFORCED;
 GO

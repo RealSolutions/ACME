@@ -6,5 +6,5 @@ FROM   sys.objects
 WHERE  type IN ('PK', 'F', 'UQ')   -- primary key, foreign key, unique
 ORDER  BY schema_name, table_name;
 
-ALTER TABLE gold.factsupplier DROP CONSTRAINT IF EXISTS PK_gold_factsupplier;
-PK_gold_factsupplier
+ALTER TABLE Gold.FactSupplier DROP CONSTRAINT IF EXISTS PK_Gold_FactSupplier;
+PK_Gold_FactSupplier

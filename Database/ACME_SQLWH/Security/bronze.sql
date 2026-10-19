@@ -1,4 +1,3 @@
-CREATE SCHEMA [bronze]
+CREATE SCHEMA [Bronze]
     AUTHORIZATION [dbo];
 GO
-

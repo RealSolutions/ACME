@@ -1,5 +1,5 @@
 --TODO Header
-CREATE   PROCEDURE gold.usp_load_dimsupplier
+CREATE   PROCEDURE Gold.usp_Load_DimSupplier
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -8,13 +8,13 @@ BEGIN
 
     BEGIN TRANSACTION;
 
-        DELETE FROM gold.dimsupplier;
+        DELETE FROM Gold.DimSupplier;
 
-        INSERT INTO gold.dimsupplier
+        INSERT INTO Gold.DimSupplier
         (
             SupplierSK, SupplierCode, SupplierName, SupplierDisplayName,
             CountryName, CurrencyCode, SpendCategory, PaymentTermsDays,
-            ValidFrom, ValidTo, IsCurrent, _loaded_at
+            ValidFrom, ValidTo, IsCurrent, _Loaded_At
         )
         SELECT
             s.SupplierSK,
@@ -32,13 +32,13 @@ BEGIN
             s.ValidTo,
             s.IsCurrent,
             @loaded_at
-        FROM silver.supplier AS s;
+        FROM Silver.Supplier AS s;
 
     COMMIT TRANSACTION;
 
     SELECT @loaded_at AS loaded_at,
            COUNT(*)                                       AS rows_loaded,
            SUM(CASE WHEN IsCurrent = 1 THEN 1 ELSE 0 END) AS current_rows
-    FROM gold.dimsupplier;
+    FROM Gold.DimSupplier;
 END;
 GO

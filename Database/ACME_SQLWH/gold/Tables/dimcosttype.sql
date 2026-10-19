@@ -1,6 +1,9 @@
-CREATE TABLE [gold].[dimcosttype]
+CREATE TABLE [Gold].[DimCostType]
 (
-  [CostType] varchar(50) PRIMARY KEY not null,
+  [CostType] varchar(50) not null,
   [Description] varchar(255) NOT NULL
 )
-go
+GO
+
+--ALTER TABLE [Gold].[DimCostType] ADD PRIMARY KEY NONCLUSTERED ([CostType] ASC) NOT ENFORCED;
+--GO

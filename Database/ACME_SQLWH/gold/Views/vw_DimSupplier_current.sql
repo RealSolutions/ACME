@@ -1,5 +1,4 @@
--- 4. Optional: current-only view for reports that don't need history -------------
-CREATE   VIEW gold.vw_dimsupplier_current
+CREATE   VIEW Gold.vw_DimSupplier_current
 AS
     SELECT 
         SupplierSK,
@@ -11,7 +10,7 @@ AS
         SpendCategory, 
         PaymentTermsDays
     FROM   
-        gold.dimsupplier
+        Gold.DimSupplier
     WHERE  
         IsCurrent = 1;
 GO

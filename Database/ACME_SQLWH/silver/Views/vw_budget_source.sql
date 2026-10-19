@@ -1,75 +1,75 @@
 /* =============================================================================
-   Silver load (SCD Type 2): ACME_SQLWH.bronze.budget -> ACME_SQLWH.silver.budget
+   Silver load (SCD Type 2): ACME_SQLWH.Bronze.Budget -> ACME_SQLWH.Silver.Budget
    Run in the ACME_SQLWH warehouse (workspace: ACME).
 
-   Source columns (bronze.budget): suppliercode, period, currencycode,
-   budgetamountlocal, budgetnote, budget_year, budget_month, budget_period,
-   version, source_file, loaded_at + _ingested_at/_source_system/_batch_id
+   Source columns (Bronze.Budget): SupplierCode, Period, CurrencyCode,
+   Budgetamountlocal, CBudgetNote, Budget_year, Budget_month, Budget_Period,
+   Version, source_file, loaded_at + _ingested_at/_source_system/_batch_id
 
-   - Business key : suppliercode + period (one budget line per supplier per period)
-   - Surrogate key: BudgetSK (BIGINT, assigned here, unique per version)
-   - Tracked      : currencycode, budgetamountlocal, budgetnote, budget_year,
-                    budget_month, budget_period, version. A change to any of these
-                    closes the current row and inserts a new version.
+   - Business key : SupplierCode + Period (one Budget line per Supplier per Period)
+   - Surrogate key: BudgetSK (BIGINT, assigned here, unique per Version)
+   - Tracked      : CurrencyCode, Budgetamountlocal, CBudgetNote, Budget_year,
+                    Budget_month, Budget_Period, Version. A change to any of these
+                    closes the current row and inserts a new Version.
    - Not tracked  : source_file, loaded_at (lineage only; a re-sent file with the
-                    same numbers does not create a new version).
-   - Duplicates   : if bronze has several rows for one key, the highest `version`
+                    same numbers does not create a new Version).
+   - Duplicates   : if Bronze has several rows for one key, the highest `Version`
                     wins, then the latest loaded_at.
-   - Deletes      : a key missing from bronze has its current row closed.
+   - Deletes      : a key missing from Bronze has its current row closed.
    - Intervals    : half-open [ValidFrom, ValidTo); current rows have ValidTo = 9999-12-31.
-   - Re-runnable  : running twice with no bronze changes is a no-op.
+   - Re-runnable  : running twice with no Bronze changes is a no-op.
    ============================================================================= */
-CREATE VIEW silver.vw_budget_source
+CREATE VIEW Silver.vw_Budget_Source
 AS
     WITH ranked AS
     (
         SELECT
-            LTRIM(RTRIM(b.suppliercode))        AS suppliercode,
-            b.period,
-            UPPER(LTRIM(RTRIM(b.currencycode))) AS currencycode,
-            b.budgetamountlocal,
-            b.budgetnote,
-            b.wbscode,
-            b.costtype,
-            b.budget_year,
-            b.budget_month,
-            b.budget_period,
-            b.version,
-            b.source_file,
-            b.loaded_at,
-            ROW_NUMBER() OVER (PARTITION BY LTRIM(RTRIM(b.suppliercode)), b.period
-                            ORDER BY b.version DESC, b.loaded_at DESC, b._ingested_at DESC) AS rn
-        FROM bronze.budget AS b
-        WHERE NULLIF(LTRIM(RTRIM(b.suppliercode)), '') IS NOT NULL
-        AND b.period IS NOT NULL
+            LTRIM(RTRIM(b.SupplierCode))        AS SupplierCode,
+            b.Period,
+            UPPER(LTRIM(RTRIM(b.CurrencyCode))) AS CurrencyCode,
+            b.BudgetAmountLocal,
+            b.BudgetNote,
+            b.WBSCode,
+            b.CostType,
+            b.Budget_Year,
+            b.Budget_Month,
+            b.Budget_Period,
+            b.Version,
+            b.Source_File,
+            b.Loaded_At,
+            ROW_NUMBER() OVER (PARTITION BY LTRIM(RTRIM(b.SupplierCode)), b.Period
+                            ORDER BY b.Version DESC, b.Loaded_At DESC, b._Ingested_At DESC) AS rn
+        FROM Bronze.Budget AS b
+        WHERE NULLIF(LTRIM(RTRIM(b.SupplierCode)), '') IS NOT NULL
+        AND b.Period IS NOT NULL
     )
     SELECT
-        suppliercode, 
-        period, 
-        currencycode,
-        budgetamountlocal, 
-        budgetnote,
-        wbscode, 
-        costtype,
-        budget_year,
-        budget_month, 
-        budget_period, 
-        version, 
-        source_file, 
-        loaded_at,
+        r.SupplierCode, 
+        r.Period, 
+        r.CurrencyCode,
+        r.BudgetAmountLocal, 
+        r.BudgetNote,
+        WBSCode, 
+        r.CostType,
+        r.Budget_Year,
+        r.Budget_Month, 
+        r.Budget_Period, 
+        r.Version, 
+        r.Source_File, 
+        r.Loaded_At,
         -- '~' marks NULL so that NULL and '' hash differently.
         -- Float uses style 3 (17 significant digits) so small amount changes are caught.
         -- HASHBYTES returns VARBINARY(8000); convert explicitly to the 32-byte column type.
         CONVERT(VARBINARY(32), HASHBYTES('SHA2_256', CONCAT_WS('|',
-            ISNULL(currencycode, '~'),
-            ISNULL(CONVERT(VARCHAR(30), budgetamountlocal, 3), '~'),
-            ISNULL(budgetnote, '~'),
-            ISNULL(CAST(budget_year  AS VARCHAR(20)), '~'),
-            ISNULL(CAST(budget_month AS VARCHAR(20)), '~'),
-            ISNULL(CONVERT(VARCHAR(10), budget_period, 23), '~'),
-            ISNULL(CAST(version AS VARCHAR(20)), '~')
+            ISNULL(r.CurrencyCode, '~'),
+            ISNULL(CONVERT(VARCHAR(30), r.BudgetAmountLocal, 3), '~'),
+            ISNULL(r.BudgetNote, '~'),
+            ISNULL(CAST(r.Budget_Year  AS VARCHAR(20)), '~'),
+            ISNULL(CAST(r.Budget_Month AS VARCHAR(20)), '~'),
+            ISNULL(CONVERT(VARCHAR(10), r.Budget_Period, 23), '~'),
+            ISNULL(CAST(Version AS VARCHAR(20)), '~')
         ))) AS RowHash
-    FROM ranked
+    FROM ranked r
     WHERE rn = 1;
 
 GO
